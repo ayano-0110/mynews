@@ -25,11 +25,10 @@ Route::controller(NewsController::class)->prefix('admin')->group(function() {
 
 use App\Http\Controllers\Admin\ProfileController;
 Route::controller(ProfileController::class)->prefix('admin')->group(function() {
-    Route::get('profile/create', 'add');
+    Route::get('profile/create', 'add')->middleware('auth');
+    Route::get('profile/edit', 'edit')->middleware('auth');
 });
-Route::controller(ProfileController::class)->prefix('admin')->group(function() {
-    Route::get('profile/edit', 'edit');
-});
+
 
 Auth::routes();
 
