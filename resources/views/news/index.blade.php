@@ -2,6 +2,7 @@
 
 @section('content')
     <div class="container">
+    <p>編集済み</p>
         <hr color="#c0c0c0">
         @if (!is_null($headline))
             <div class="row">
