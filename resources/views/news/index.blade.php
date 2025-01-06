@@ -23,6 +23,9 @@
                         <div class="col-md-6">
                             <p class="body mx-auto">{{ Str::limit($headline->body, 650) }}</p>
                         </div>
+                        <div class="col-md-6">
+                            <a href="{{ route('news.detail', ['id' => $headline->id]) }}">詳細</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -48,6 +51,9 @@
                                 @if ($post->image_path)
                                     <img src="{{ secure_asset('storage/image/' . $post->image_path) }}">
                                 @endif
+                            </div>
+                            <div class="col-md-6">
+                                <a href="{{ route('news.detail', ['id' => $post->id]) }}">詳細</a>
                             </div>
                         </div>
                     </div>

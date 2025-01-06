@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\News;
+use App\Models\Comment;
 
 class NewsController extends Controller
 {
@@ -21,6 +22,26 @@ class NewsController extends Controller
         // news/index.blade.php ファイルを渡している
         // また View テンプレートに headline、 posts、という変数を渡している
         return view('news.index', ['headline' => $headline, 'posts' => $posts]);
+    }
+
+    public function show(Request $request)
+    {
+        // News Modelからデータを取得する
+        $news = News::find($request->id);
+        if (empty($news)) {
+            abort(404);
+        }
+        return view('news.detail', ['news' => $news]);
+    }
+
+    public function addComment(Request $request)
+    {
+        $book = Comment::create([
+            'news_id' => $request->input('id'),
+            'comment' => $request->input('comment'),
+        ]);
+
+        return redirect('/detail?id='.  $request->input('id'));
     }
 }
 
